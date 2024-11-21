@@ -2,7 +2,8 @@
 An app to aid in a musician's practice.
 
 # TODO
-- [ ] Create Kotlin Multiplatform project
+- [x] Create Kotlin Multiplatform project
+  - [ ] Change project to Compose Multiplatform
 - [ ] Build UI
 - [ ] Add random note generator
 - [ ] Add metronome for all tempos
