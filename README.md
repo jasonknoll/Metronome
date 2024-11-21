@@ -1,5 +1,5 @@
 # Metronome
-An app to aid in a musician's practice.
+A practice tool for all musicians.
 
 # TODO
 - [x] Create Kotlin Multiplatform project
