@@ -8,6 +8,7 @@ captures
 .cxx
 local.properties
 xcuserdata
+.kotlin/
 
 # Compiled class file
 *.class
