@@ -1,10 +1,12 @@
 package com.jasondsp.metronome
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
@@ -12,6 +14,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -20,10 +23,13 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 // TODO define constants
 
-enum class Screens(val string: String) {
-    RANDOM_NOTE("RN"),
-    METRONOME("M")
+enum class Screens() {
+    RANDOM_NOTE,
+    METRONOME,
+    FRETBOARD
 }
+
+// TODO implement navigation component
 
 /**
  * Main compose application UI.
@@ -40,17 +46,26 @@ fun App() {
                 // TODO add button selected state
                 Button(
                     onClick = { screen = Screens.METRONOME },
-                    modifier = Modifier.fillMaxWidth(0.5f).fillMaxHeight(),
+                    modifier = Modifier.fillMaxWidth(0.33f).fillMaxHeight(),
                     shape = RectangleShape
                 ) {
                     Text("Metronome")
                 }
+
                 Button(
                     onClick = { screen = Screens.RANDOM_NOTE },
+                    modifier = Modifier.fillMaxWidth(0.5f).fillMaxHeight(),
+                    shape = RectangleShape
+                ) {
+                    Text("Random Note", fontSize = 12.sp)
+                }
+
+                Button(
+                    onClick = { screen = Screens.FRETBOARD },
                     modifier = Modifier.fillMaxWidth().fillMaxHeight(),
                     shape = RectangleShape
                 ) {
-                    Text("Random Note Generator", fontSize = 12.sp)
+                    Text("Fretboard")
                 }
             }
 
@@ -72,12 +87,12 @@ fun App() {
 @Preview
 fun RandomNote() {
     MaterialTheme {
-        var note by remember { mutableStateOf("") };
+        var note by remember { mutableStateOf("C") };
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
             Button(onClick = { note = getRandomNote().note }) {
                 Text("Click to get random note!")
             }
-            Text("$note")
+            Text(note, fontSize = 72.sp)
         }
     }
 }
@@ -130,12 +145,20 @@ fun Metronome() {
                 Text("1/16")
             }
         }
+
+        // Need to put the animated beat indicators down here
+        Canvas(modifier = Modifier.fillMaxSize()) {
+            drawRect(color = Color.Blue, size = size )
+        }
     }
 }
 
-// TODO customize theme
+// TODO BREAK DOWN INTO SMALLER COMPONENTS TO REUSE ON MULTIPLE SCREENS
+//  TODO BPM counter view
+
+// TODO! customize theme
 // TODO add Tempo/BPM functionality
-// TODO add random note generator activity
+// TODO add random note generator key/scale selection
 // TODO add metronome UI
 // TODO add metronome functionality
 // TODO add fretboard visualizer (for diff tunings)
