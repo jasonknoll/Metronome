@@ -2,6 +2,7 @@ package com.jasondsp.metronome
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Button
@@ -76,6 +77,7 @@ fun Metronome() {
             Button(onClick = { tempo = incrementTempo(tempo) }) {
                 Text("+")
             }
+            Spacer(modifier = Modifier.fillMaxWidth(0.1f))
             Button(onClick = { tempo = decrementTempo(tempo) }) {
                 Text(" - ")
             }
