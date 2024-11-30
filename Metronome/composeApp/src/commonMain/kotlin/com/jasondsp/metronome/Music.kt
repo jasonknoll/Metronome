@@ -21,10 +21,3 @@ fun getRandomNote(): Notes {
     return Notes.entries.random();
 }
 
-fun calculateTimeBetweenClicks(tempo: Int) {
-    return
-}
-
-fun onMetronomeClick() {
-    return
-}

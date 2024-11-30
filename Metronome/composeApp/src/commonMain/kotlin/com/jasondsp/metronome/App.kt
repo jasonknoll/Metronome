@@ -1,18 +1,14 @@
 package com.jasondsp.metronome
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
-import androidx.compose.material.ButtonColors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -35,7 +31,6 @@ fun App() {
                     onClick = { screen = Screens.METRONOME },
                     modifier = Modifier.fillMaxWidth(0.5f)
                 ) {
-
                     Text("Metronome")
                 }
                 Button(
@@ -48,6 +43,8 @@ fun App() {
 
             if (screen == Screens.RANDOM_NOTE) {
                 RandomNote()
+            } else if (screen == Screens.METRONOME) {
+                Metronome()
             }
         }
     }
@@ -67,7 +64,13 @@ fun RandomNote() {
     }
 }
 
+@Composable
+fun Metronome() {
+    var tempo by remember { mutableStateOf(60) }
+}
+
 // TODO add Tempo/BPM functionality
 // TODO add random note generator activity
 // TODO add metronome UI
 // TODO add metronome functionality
+// TODO add fretboard visualizer (for diff tunings)
