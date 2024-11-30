@@ -11,6 +11,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -20,7 +21,9 @@ enum class Screens(val string: String) {
     METRONOME("M")
 }
 
-
+/**
+ * Main compose application UI.
+ */
 @Composable
 fun App() {
     MaterialTheme {
@@ -28,21 +31,26 @@ fun App() {
         var screen by remember { mutableStateOf(Screens.RANDOM_NOTE) }
 
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-            Row(modifier = Modifier.fillMaxWidth().fillMaxHeight(0.1f)) {
+            Row(modifier = Modifier.fillMaxWidth().fillMaxHeight(0.08f)) {
+                // TODO change/add colors for buttons
+                // TODO add button selected state
                 Button(
                     onClick = { screen = Screens.METRONOME },
-                    modifier = Modifier.fillMaxWidth(0.5f)
+                    modifier = Modifier.fillMaxWidth(0.5f).fillMaxHeight(),
+                    shape = RectangleShape
                 ) {
                     Text("Metronome")
                 }
                 Button(
                     onClick = { screen = Screens.RANDOM_NOTE },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+                    shape = RectangleShape
                 ) {
                     Text("Random Note Generator", fontSize = 12.sp)
                 }
             }
 
+            // TODO find a better, more androidy way of setting view state
             if (screen == Screens.RANDOM_NOTE) {
                 RandomNote()
             }
@@ -53,6 +61,9 @@ fun App() {
     }
 }
 
+/**
+ * UI for random note generator page.
+ */
 @Composable
 @Preview
 fun RandomNote() {
@@ -67,6 +78,9 @@ fun RandomNote() {
     }
 }
 
+/**
+ * UI for metronome view.
+ */
 @Composable
 fun Metronome() {
     var tempo by remember { mutableStateOf(60) }
@@ -78,7 +92,7 @@ fun Metronome() {
                 Button(
                     onClick = { tempo = incrementTempo(tempo) },
                     modifier = Modifier.fillMaxWidth(0.5f)) {
-                    Text("+")
+                    Text(" + ")
                 }
             }
 
@@ -95,6 +109,8 @@ fun Metronome() {
     }
 }
 
+
+// TODO customize theme
 // TODO add Tempo/BPM functionality
 // TODO add random note generator activity
 // TODO add metronome UI
