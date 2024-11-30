@@ -15,10 +15,16 @@ enum class Notes(val note: String) {
     G_SHARP("G#")
 }
 
+// TODO implement keys algorithmically
+
 fun getRandomNote(): Notes {
     return Notes.entries.random();
 }
 
 fun calculateTimeBetweenClicks(tempo: Int) {
+    return
+}
+
+fun onMetronomeClick() {
     return
 }
