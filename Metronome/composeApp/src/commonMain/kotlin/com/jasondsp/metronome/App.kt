@@ -16,11 +16,35 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 import metronome.composeapp.generated.resources.Res
 import metronome.composeapp.generated.resources.compose_multiplatform
 
+enum class Screens {
+    RANDOM_NOTE,
+    METRONOME
+}
+
 @Composable
-@Preview
 fun App() {
     MaterialTheme {
-        var showContent by remember { mutableStateOf(false) }
+        // Set default screen to random note generator
+        var screen by remember { mutableStateOf(Screens.RANDOM_NOTE) }
+
+        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+            Button(onClick = { screen = Screens.METRONOME}) {
+                Text("Metronome")
+            }
+            Button(onClick = { screen = Screens.RANDOM_NOTE}) {
+                Text("Random Note Generator")
+            }
+            if (screen == Screens.RANDOM_NOTE) {
+                RandomNote()
+            }
+        }
+    }
+}
+
+@Composable
+@Preview
+fun RandomNote() {
+    MaterialTheme {
         var note by remember { mutableStateOf("") };
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
             Button(onClick = { note = getRandomNote().note }) {
