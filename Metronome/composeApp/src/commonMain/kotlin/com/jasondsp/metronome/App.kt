@@ -21,17 +21,17 @@ import metronome.composeapp.generated.resources.compose_multiplatform
 fun App() {
     MaterialTheme {
         var showContent by remember { mutableStateOf(false) }
+        var note by remember { mutableStateOf("") };
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-            Button(onClick = { showContent = !showContent }) {
-                Text("Click me!")
+            Button(onClick = { note = getRandomNote().note }) {
+                Text("Click to get random note!")
             }
-            AnimatedVisibility(showContent) {
-                val greeting = remember { Greeting().greet() }
-                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(painterResource(Res.drawable.compose_multiplatform), null)
-                    Text("Compose: $greeting")
-                }
-            }
+            Text("Note: ${note}")
         }
     }
 }
+
+// TODO add Tempo/BPM functionality
+// TODO add random note generator activity
+// TODO add metronome UI
+// TODO add metronome functionality
