@@ -2,6 +2,7 @@ package com.jasondsp.metronome
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
@@ -13,9 +14,9 @@ import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 
-enum class Screens {
-    RANDOM_NOTE,
-    METRONOME
+enum class Screens(val string: String) {
+    RANDOM_NOTE("RN"),
+    METRONOME("M")
 }
 
 
@@ -26,7 +27,7 @@ fun App() {
         var screen by remember { mutableStateOf(Screens.RANDOM_NOTE) }
 
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-            Row(modifier = Modifier.fillMaxWidth()) {
+            Row(modifier = Modifier.fillMaxWidth().fillMaxHeight(0.1f)) {
                 Button(
                     onClick = { screen = Screens.METRONOME },
                     modifier = Modifier.fillMaxWidth(0.5f)
@@ -34,7 +35,7 @@ fun App() {
                     Text("Metronome")
                 }
                 Button(
-                    onClick = { screen = Screens.RANDOM_NOTE},
+                    onClick = { screen = Screens.RANDOM_NOTE },
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text("Random Note Generator", fontSize = 12.sp)
@@ -43,7 +44,8 @@ fun App() {
 
             if (screen == Screens.RANDOM_NOTE) {
                 RandomNote()
-            } else if (screen == Screens.METRONOME) {
+            }
+            else if (screen == Screens.METRONOME) {
                 Metronome()
             }
         }
@@ -59,7 +61,7 @@ fun RandomNote() {
             Button(onClick = { note = getRandomNote().note }) {
                 Text("Click to get random note!")
             }
-            Text("Note: ${note}")
+            Text("Note: $note")
         }
     }
 }
@@ -67,6 +69,18 @@ fun RandomNote() {
 @Composable
 fun Metronome() {
     var tempo by remember { mutableStateOf(60) }
+
+    Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+        Text("$tempo")
+        Row() {
+            Button(onClick = { tempo = incrementTempo(tempo) }) {
+                Text("+")
+            }
+            Button(onClick = { tempo = decrementTempo(tempo) }) {
+                Text(" - ")
+            }
+        }
+    }
 }
 
 // TODO add Tempo/BPM functionality

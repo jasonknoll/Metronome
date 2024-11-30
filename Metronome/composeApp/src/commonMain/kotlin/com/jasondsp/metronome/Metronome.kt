@@ -5,7 +5,7 @@ fun incrementTempo(tempo: Int): Int {
 }
 
 fun decrementTempo(tempo: Int): Int {
-    return tempo + 1
+    return tempo - 1
 }
 
 fun calculateTimeBetweenClicks(tempo: Int) {
