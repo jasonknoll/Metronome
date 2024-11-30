@@ -1,5 +1,6 @@
 package com.jasondsp.metronome
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,9 +13,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
+
+// TODO define constants
 
 enum class Screens(val string: String) {
     RANDOM_NOTE("RN"),
@@ -73,7 +77,7 @@ fun RandomNote() {
             Button(onClick = { note = getRandomNote().note }) {
                 Text("Click to get random note!")
             }
-            Text("Note: $note")
+            Text("$note")
         }
     }
 }
@@ -86,7 +90,7 @@ fun Metronome() {
     var tempo by remember { mutableStateOf(60) }
 
     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-        Text("$tempo")
+        Text("$tempo", fontSize = 72.sp)
         Row() {
             Column(Modifier.fillMaxWidth(0.5f)) {
                 Button(
@@ -106,9 +110,28 @@ fun Metronome() {
                 }
             }
         }
+
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+            Button(
+                onClick = {},
+            ) {
+                Text("1/4")
+            }
+
+            Button(
+                onClick = {},
+            ) {
+                Text("1/8")
+            }
+
+            Button(
+                onClick = {},
+            ) {
+                Text("1/16")
+            }
+        }
     }
 }
-
 
 // TODO customize theme
 // TODO add Tempo/BPM functionality
