@@ -74,12 +74,22 @@ fun Metronome() {
     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
         Text("$tempo")
         Row() {
-            Button(onClick = { tempo = incrementTempo(tempo) }) {
-                Text("+")
+            Column(Modifier.fillMaxWidth(0.5f)) {
+                Button(
+                    onClick = { tempo = incrementTempo(tempo) },
+                    modifier = Modifier.fillMaxWidth(0.5f)) {
+                    Text("+")
+                }
             }
+
             Spacer(modifier = Modifier.fillMaxWidth(0.1f))
-            Button(onClick = { tempo = decrementTempo(tempo) }) {
-                Text(" - ")
+
+            Column() {
+                Button(
+                    onClick = { tempo = decrementTempo(tempo) },
+                    modifier = Modifier.fillMaxWidth(0.5f)) {
+                    Text(" - ")
+                }
             }
         }
     }
