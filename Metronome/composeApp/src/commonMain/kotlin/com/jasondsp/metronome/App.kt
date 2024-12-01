@@ -158,6 +158,6 @@ fun Metronome() {
 // TODO! customize theme
 // TODO add Tempo/BPM functionality
 // TODO add random note generator key/scale selection
-// TODO add metronome UI
 // TODO add metronome functionality
+// TODO add metronome beat visualizer
 // TODO add fretboard visualizer (for diff tunings)
