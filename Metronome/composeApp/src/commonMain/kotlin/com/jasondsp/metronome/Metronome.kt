@@ -12,6 +12,7 @@ fun calculateTimeBetweenClicks(tempo: Int) {
     return
 }
 
+// TODO make sounds play and animate shit
 fun onMetronomeClick() {
     return
 }
